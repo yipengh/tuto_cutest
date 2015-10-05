@@ -1,6 +1,7 @@
 Official tutorial of CuTest (C) beautified on MD
 ================================================
 
+
 PREAMBLE
 --------
 Since the officially provided readme of CuTest is terrible to read 
@@ -9,6 +10,7 @@ is required even though this technology has been stopped maintaining
 since several years. Hope this thing helps someone willing to take 
 advantage of the dead simple unit test library 
 [CuTest](http://cutest.sourceforge.net/).
+
 
 HOW TO USE
 ----------
@@ -19,11 +21,6 @@ existing code to ensure that it works as you suspect.
 Your unit tests are an investment. They let you to change your 
 code and add new features confidently without worrying about 
 accidentally breaking earlier features. 
-
-LICENSING
----------
-CuTest is distributed under the 
-[zlib/libpng license](http://opensource.org/licenses/zlib-license.html).
 
 
 GETTING STARTED
@@ -226,6 +223,33 @@ AUTOMATING TEST SUITE GENERATION
 directory and generate the code to run all the tests contained in
 them. Using this script you don't have to worry about writing
 AllTests.c or dealing with any of the other suite code.
+
+
+LICENSING
+---------
+CuTest is distributed under the 
+[zlib/libpng license](http://opensource.org/licenses/zlib-license.html).
+
+Copyright (c) 2003 Asim Jalis
+
+This software is provided 'as-is', without any express or implied
+warranty. In no event will the authors be held liable for any damages
+arising from the use of this software.
+
+Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute it
+freely, subject to the following restrictions:
+
+1. The origin of this software must not be misrepresented; you must not
+claim that you wrote the original software. If you use this software in
+a product, an acknowledgment in the product documentation would be
+appreciated but is not required.
+
+2. Altered source versions must be plainly marked as such, and must not
+be misrepresented as being the original software.
+
+3. This notice may not be removed or altered from any source
+distribution.
 
 
 CREDITS
