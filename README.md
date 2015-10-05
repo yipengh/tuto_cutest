@@ -43,8 +43,8 @@ executable called AllTests.exe. For example, if you are using
 Windows with the cl.exe compiler you would type: 
 
 ```bat
-    cl.exe AllTests.c CuTest.c CuTestTest.c
-    AllTests.exe
+cl.exe AllTests.c CuTest.c CuTestTest.c
+AllTests.exe
 ```
 
 This will run all the unit tests associated with CuTest and print 
@@ -64,54 +64,54 @@ project. Next, create a file called `StrUtil.c` with these
 contents:
 
 ```c
-    #include "CuTest.h"
-    
-    char* StrToUpper(char* str) {
-        return str;
-    }
-    
-    void TestStrToUpper(CuTest *tc) {
-        char* input = strdup("hello world");
-        char* actual = StrToUpper(input);
-        char* expected = "HELLO WORLD";
-        CuAssertStrEquals(tc, expected, actual);
-    }
-   
-    CuSuite* StrUtilGetSuite() {
-        CuSuite* suite = CuSuiteNew();
-        SUITE_ADD_TEST(suite, TestStrToUpper);
-        return suite;
-    }
+#include "CuTest.h"
+
+char* StrToUpper(char* str) {
+    return str;
+}
+
+void TestStrToUpper(CuTest *tc) {
+    char* input = strdup("hello world");
+    char* actual = StrToUpper(input);
+    char* expected = "HELLO WORLD";
+    CuAssertStrEquals(tc, expected, actual);
+}
+
+CuSuite* StrUtilGetSuite() {
+    CuSuite* suite = CuSuiteNew();
+    SUITE_ADD_TEST(suite, TestStrToUpper);
+    return suite;
+}
 ```
 
 Create another file called `AllTests.c` with these contents:
 
 ```c
-    #include "CuTest.h"
+#include "CuTest.h"
+
+CuSuite* StrUtilGetSuite();
+
+void RunAllTests(void) {
+    CuString *output = CuStringNew();
+    CuSuite* suite = CuSuiteNew();
     
-    CuSuite* StrUtilGetSuite();
-    
-    void RunAllTests(void) {
-        CuString *output = CuStringNew();
-        CuSuite* suite = CuSuiteNew();
-        
-        CuSuiteAddSuite(suite, StrUtilGetSuite());
-    
-        CuSuiteRun(suite);
-        CuSuiteSummary(suite, output);
-        CuSuiteDetails(suite, output);
-        printf("%s\n", output->buffer);
-    }
-    
-    int main(void) {
-        RunAllTests();
-    }
+    CuSuiteAddSuite(suite, StrUtilGetSuite());
+
+    CuSuiteRun(suite);
+    CuSuiteSummary(suite, output);
+    CuSuiteDetails(suite, output);
+    printf("%s\n", output->buffer);
+}
+
+int main(void) {
+    RunAllTests();
+}
 ```
 
 Then type this on the command line:
 
 ```bat
-    gcc AllTests.c CuTest.c StrUtil.c
+gcc AllTests.c CuTest.c StrUtil.c
 ```
 
 to compile. You can replace gcc with your favorite compiler.
@@ -119,7 +119,7 @@ CuTest should be portable enough to handle all Windows and Unix
 compilers. Then to run the tests type:
 
 ```bat
-    a.out
+a.out
 ```
 
 This will print an error because we haven't implemented the 
@@ -127,19 +127,19 @@ StrToUpper function correctly. We are just returning the string
 without changing it to upper case. 
 
 ```c
-    char* StrToUpper(char* str) {
-        return str;
-    }
+char* StrToUpper(char* str) {
+    return str;
+}
 ```
 
 Rewrite this as follows:
 
 ```c
-    char* StrToUpper(char* str) {
-        char* p;
-        for (p = str ; *p ; ++p) *p = toupper(*p);
-        return str;
-    }
+char* StrToUpper(char* str) {
+    char* p;
+    for (p = str ; *p ; ++p) *p = toupper(*p);
+    return str;
+}
 ```
 
 Recompile and run the tests again. The test should pass this 
@@ -200,12 +200,12 @@ environment.
 CuTest offers a rich set of CuAssert functions. Here is a list:
 
 ```c
-    void CuAssert(CuTest* tc, char* message, int condition);
-    void CuAssertTrue(CuTest* tc, int condition);
-    void CuAssertStrEquals(CuTest* tc, char* expected, char* actual);
-    void CuAssertIntEquals(CuTest* tc, int expected, int actual);
-    void CuAssertPtrEquals(CuTest* tc, void* expected, void* actual);
-    void CuAssertPtrNotNull(CuTest* tc, void* pointer);
+void CuAssert(CuTest* tc, char* message, int condition);
+void CuAssertTrue(CuTest* tc, int condition);
+void CuAssertStrEquals(CuTest* tc, char* expected, char* actual);
+void CuAssertIntEquals(CuTest* tc, int expected, int actual);
+void CuAssertPtrEquals(CuTest* tc, void* expected, void* actual);
+void CuAssertPtrNotNull(CuTest* tc, void* pointer);
 ```
 
 The project is open source and so you can add other more powerful
